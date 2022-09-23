@@ -25,10 +25,12 @@ return new class extends Migration
 
         Schema::create('records', function (Blueprint $table) {
             $table->id();
+
             $table->string('title');
             $table->string('description');
             $table->foreignId('doctor_id')->constrained('users');
             $table->foreignId('patient_id')->constrained('patients');
+            
             $table->timestamps();
         });
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -38,5 +39,11 @@ Route::middleware([
 
 
 
+
 // CRUD DE PACIENTES 
 Route::resource('user', UserController::class);
+
+
+// Vistas para mostar el historial clinico del paciente
+Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
+Route::get('/appointments/patients/{patient}', [AppointmentController::class, 'show'])->name('appointments.show');

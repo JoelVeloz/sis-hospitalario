@@ -18,12 +18,14 @@ return new class extends Migration
         // MODELO DE CITAS MEDICAS
 
         // Estado  (pendiente, confirmada, cancelada)
+        // Fecha de inicio (date)
         // ficha medica (la ficha medica a la que se le asigna la cita)
 
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
 
             $table->string('status');
+            $table->timestamp('date');
             $table->foreignId('record_id')->constrained('records');
             $table->foreignId('patient_id')->constrained('patients');
             $table->foreignId('doctor_id')->constrained('users');
