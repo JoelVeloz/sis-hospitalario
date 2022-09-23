@@ -19,7 +19,6 @@ class Patient extends Model
         'address',
         'email',
         'gender',
-        'age',
     ];
 
 

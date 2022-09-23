@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Patient;
 use COM;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class PatientController extends Controller
 {
@@ -15,7 +16,9 @@ class PatientController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Patients/Index', [
+            'patients' => Patient::all()
+        ]);
     }
 
     /**
@@ -83,6 +86,9 @@ class PatientController extends Controller
     public function show(Patient $patient)
     {
         // R 
+        // Se cargan las fichas medicas del paciente 
+        $patient->load('records');
+        // Se retorna
         return response()->json($patient, 200);
     }
 

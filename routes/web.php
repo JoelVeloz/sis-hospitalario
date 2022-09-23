@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\PatientController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -41,7 +42,7 @@ Route::middleware([
 
 
 // CRUD DE PACIENTES 
-Route::resource('user', UserController::class);
+Route::resource('patients', PatientController::class);
 
 
 // Vistas para mostar el historial clinico del paciente

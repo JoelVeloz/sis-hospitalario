@@ -26,7 +26,6 @@ return new class extends Migration
 
             $table->string('status');
             $table->timestamp('date');
-            $table->foreignId('record_id')->constrained('records');
             $table->foreignId('patient_id')->constrained('patients');
             $table->foreignId('doctor_id')->constrained('users');
 
