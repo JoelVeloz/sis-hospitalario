@@ -13,6 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
+
+        // Bajo logica de un sistema administrativo
+        // MODELO DE CUALQUIER PERSONAL MEDICO
+
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
