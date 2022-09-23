@@ -33,4 +33,12 @@ class Appointment extends Model
     {
         return $this->belongsTo(Record::class);
     }
+
+    // Filtro para controlador 
+    public function scopeFilter($query, $filters)
+    {
+        $query->when($filters, function ($query, $search) {
+            $query->where('date', 'like', '%' . $search . '%');
+        });
+    }
 }
