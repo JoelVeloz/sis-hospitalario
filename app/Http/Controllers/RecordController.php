@@ -8,32 +8,7 @@ use Illuminate\Http\Request;
 
 class RecordController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-
-
-
-
-
-    // FUNCIONES CRUD DE FICHA MEDICA 
+    // FUNCIONES  DE FICHA MEDICA 
 
     /**
      * Store a newly created resource in storage.
@@ -56,5 +31,4 @@ class RecordController extends Controller
 
         return redirect()->route('patients.show', $record->patient_id);
     }
-
 }

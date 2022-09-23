@@ -21,34 +21,6 @@ class PatientController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Patient  $patient
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Patient $patient)
-    {
-        //
-    }
-
-
-
-
-
-
 
     // FUNCIONES CRUD DE PACIENTES
     /**
@@ -84,7 +56,7 @@ class PatientController extends Controller
     {
         // R 
         // Se cargan las fichas medicas del paciente 
-        $patient->load('records');
+        $patient->load('records', 'records.doctor');
         // Se retorna
         // return response()->json($patient, 200);
         return Inertia::render('Patients/Show', compact('patient'));
