@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\Appointment;
 use App\Models\Patient;
 use App\Models\Record;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,6 +19,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        User::create([
+            'name' => 'Joel',
+            'email' => 'joel.edu.v@gmail.com',
+            'password' => bcrypt('12345678'),
+        ]);
         Patient::factory(10)->create();
         Appointment::factory(20)->create();
         Record::factory(30)->create();
@@ -25,9 +31,6 @@ class DatabaseSeeder extends Seeder
 
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+
     }
 }

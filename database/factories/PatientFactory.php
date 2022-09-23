@@ -20,11 +20,9 @@ class PatientFactory extends Factory
             'name' => $this->faker->name,
             'lastname' => $this->faker->lastname,
             'identification' => random_int(1000000, 9999999),
-            'birthdate' => $this->faker->date,
             'phone' => random_int(1000000, 9999999),
             'address' => $this->faker->address,
             'email' => $this->faker->email,
-            'gender' => "Masculino",
         ];
     }
 }

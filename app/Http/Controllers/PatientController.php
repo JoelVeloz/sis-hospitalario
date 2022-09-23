@@ -65,12 +65,9 @@ class PatientController extends Controller
             'name' => 'required',
             'lastname' => 'required',
             'identification' => 'required|unique:patients',
-            'birthdate' => 'required|date',
             'phone' => 'required',
             'address' => 'required',
             'email' => 'required|email',
-            'gender' => 'required|in_array:Masculino,Femenino',
-            'age' => 'required|integer'
         ]);
         // Se crea
         $patient = Patient::create($request->all());
@@ -89,7 +86,8 @@ class PatientController extends Controller
         // Se cargan las fichas medicas del paciente 
         $patient->load('records');
         // Se retorna
-        return response()->json($patient, 200);
+        // return response()->json($patient, 200);
+        return Inertia::render('Patients/Show', compact('patient'));
     }
 
     /**
@@ -102,22 +100,24 @@ class PatientController extends Controller
     public function update(Request $request, Patient $patient)
     {
         //U
+
         // Se valida
         $request->validate([
             'name' => 'required',
             'lastname' => 'required',
-            'identification' => 'required|unique:patients',
-            'birthdate' => 'required|date',
+            'identification' => 'required|unique:patients,identification,' . $patient->id,
             'phone' => 'required',
             'address' => 'required',
             'email' => 'required|email',
-            'gender' => 'required|in_array:Masculino,Femenino',
-            'age' => 'required|integer'
         ]);
+        // dd($request->all());
+
         // Se actualiza
         $patient->update($request->all());
+
         // Se retorna
-        return response()->json($patient, 200);
+        // return response()->json($patient, 200);
+        return redirect()->route('patients.index');
     }
 
     /**
@@ -128,10 +128,15 @@ class PatientController extends Controller
      */
     public function destroy(Patient $patient)
     {
+        // dd($patient);
         // D
         // Se elimina
+        $patient->records()->delete();
+        $patient->appointments()->delete();
         $patient->delete();
+
         // Se retorna
-        return response()->json(null, 204);
+        // return response()->json(null, 204);
+        return redirect()->route('patients.index');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Record;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class RecordController extends Controller
@@ -32,11 +33,6 @@ class RecordController extends Controller
 
 
 
-
-
-
-
-
     // FUNCIONES CRUD DE FICHA MEDICA 
 
     /**
@@ -47,51 +43,18 @@ class RecordController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Valido 
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'patient_id' => 'required',
+        ]);
+        // Obtengo datos de realciones 
+        $payload = $request->all();
+        $payload['doctor_id'] = auth()->user()->id;
+        $record = Record::create($payload);
+
+        return redirect()->route('patients.show', $record->patient_id);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Record  $record
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Record $record)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Record  $record
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Record $record)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Record  $record
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Record $record)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Record  $record
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Record $record)
-    {
-        //
-    }
 }

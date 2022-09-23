@@ -31,11 +31,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('lastname');
             $table->string('identification');
-            $table->date('birthdate');
             $table->string('phone');
             $table->string('address');
             $table->string('email');
-            $table->string('gender');
 
             $table->timestamps();
         });

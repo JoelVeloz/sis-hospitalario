@@ -22,7 +22,7 @@ class RecordFactory extends Factory
             'title' => $this->faker->title,
             'description' => $this->faker->text,
             'doctor_id' =>  1,
-            'patient_id' =>  User::all('id')->random(),
+            'patient_id' =>  Patient::all('id')->random(),
         ];
     }
 }
