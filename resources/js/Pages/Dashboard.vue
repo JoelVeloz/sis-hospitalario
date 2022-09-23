@@ -23,6 +23,9 @@ import Welcome from '@/Components/Welcome.vue';
                         <span>
                             - Historial de Pacientes
                         </span>
+                        <span>
+                            - Lista de citas de pacientes
+                        </span>
                     </div>
                 </div>
             </div>
